@@ -4,56 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>健康監測系統</title>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body { 
             text-align: center; 
             font-family: Arial, sans-serif; 
-            margin: 0; 
-            padding: 20px; 
             display: flex;
             flex-direction: column;
             height: 100vh;
-            box-sizing: border-box;
             background-color: #f0f8ff;
         }
 
         h1 {
-            margin-bottom: 20px;
+            margin: 20px 0;
         }
 
         .container {
             display: flex;
             flex: 1;
-            gap: 20px; /* 按鈕之間的間距 */
+            gap: 15px; /* 設定按鈕間的間距 */
             justify-content: space-between;
-            align-items: center;
+            padding: 10px;
         }
 
         .btn {
-            flex: 1; /* 讓按鈕平均分配寬度 */
-            font-size: 20px;
+            flex: 1; /* 讓每個按鈕等寬 */
+            font-size: 24px;
             background: lightblue;
             border: none;
             cursor: pointer;
             display: flex;
-            flex-direction: column;
+            flex-direction: column; /* 讓圖片與文字垂直排列 */
             align-items: center;
             justify-content: center;
-            border-radius: 15px; /* 圓角邊框 */
-            padding: 30px 20px; /* 調整按鈕內間距 */
-            margin: 0 10px; /* 確保按鈕之間有間隙 */
-            transition: background 0.2s ease, transform 0.2s ease;
+            border-radius: 15px; /* 圓角 */
+            transition: transform 0.2s ease, background 0.2s ease;
+            padding: 20px; /* 增加內距，讓按鈕保持大小 */
         }
 
-        .btn i {
-            font-size: 40px; /* 調整圖示大小 */
-            margin-bottom: 10px;
+        .btn img {
+            width: 50px; /* 設定圖示大小 */
+            height: 50px;
+            margin-bottom: 10px; /* 圖片與文字間隔 */
         }
 
         .btn:hover {
+            transform: scale(1.05); /* 滑鼠移上去放大 */
             background: deepskyblue;
-            transform: scale(1.05); /* 滑鼠懸停時放大效果 */
         }
     </style>
 </head>
@@ -61,13 +63,16 @@
     <h1>健康監測系統</h1>
     <div class="container">
         <button class="btn" onclick="location.href='data.html'">
-            <i class="fas fa-heartbeat"></i><br>生理數據
+            <img src="images/heart.png" alt="心律圖示">
+            生理數據
         </button>
         <button class="btn" onclick="location.href='gps.html'">
-            <i class="fas fa-map-marker-alt"></i><br>GPS 定位
+            <img src="images/map.png" alt="GPS 圖示">
+            GPS 定位
         </button>
         <button class="btn" onclick="location.href='settings.html'">
-            <i class="fas fa-cog"></i><br>設定
+            <img src="images/setting.png" alt="設定圖示">
+            設定
         </button>
     </div>
 </body>
