@@ -23,7 +23,7 @@
             padding-top: 20px;
         }
 
-        h1 {
+        title {
             margin-bottom: 20px;
         }
 
@@ -47,17 +47,83 @@
             vertical-align: middle;
         }
 
+        .settings-container {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 400px;
+        }
+
+        .settings-container {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 400px;
+        }
+
+        .language-select {
+            font-size: 18px;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
     </style>
 </head>
 <body>
 
     <button class="back-btn" onclick="location.href='index.html'">
         <img src="images/arrow.png" alt="返回" width="24" height="24">
-        <span>返回</span>
+        <span id="back">返回</span>
     </button>
 
-    <h1>設定</h1>
+    <h1 id="title">設定</h1>
 
+    <div class="settings-container">
+        <label for="language" id="language-label">切換語言：</label>
+        <select id="language" class="language-select" onchange="changeLanguage(this.value)">
+            <option value="zh-TW">繁體中文</option>
+            <option value="en">English</option>
+        </select>
+    </div>
+
+
+    <script>
+        function changeLanguage(lang) {
+            localStorage.setItem("language", lang);
+            updateLanguage(lang);
+        }
+
+        function updateLanguage(lang) {
+            const translations = {
+                "zh-TW": {
+                    "title": "設定",
+                    "language-label": "切換語言：",
+                    "back": "返回"
+                },
+                "en": {
+                    "title": "Settings",
+                    "language-label": "Change Language:",
+                    "back": "Back"
+                }
+            };
+
+            document.getElementById("title").textContent = translations[lang]["title"];
+            document.getElementById("language-label").textContent = translations[lang]["language-label"];
+            document.getElementById("back").textContent = translations[lang]["back"];
+        }
+
+        // 頁面加載時讀取語言設定
+        window.onload = function() {
+            const savedLang = localStorage.getItem("language") || "zh-TW";
+            document.getElementById("language").value = savedLang;
+            updateLanguage(savedLang);
+        };
+    </script>
 
 </body>
 </html>

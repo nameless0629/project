@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GPS定位</title>
+    <title id="page-name">GPS定位</title>
     <style>
         * {
             margin: 0;
@@ -23,7 +23,7 @@
             padding-top: 20px;
         }
 
-        h1 {
+        title {
             margin-bottom: 20px;
         }
 
@@ -53,11 +53,36 @@
 
     <button class="back-btn" onclick="location.href='index.html'">
         <img src="images/arrow.png" alt="返回" width="24" height="24">
-        <span>返回</span>
+        <span id="back">返回</span>
     </button>
 
-    <h1>GPS定位</h1>
+    <h1 id="title">GPS定位</h1>
 
 
+    <script>
+        function updateLanguage(lang) {
+            const translations = {
+                "zh-TW": {
+                    "page-name": "GPS定位",
+                    "title": "GPS定位",
+                    "back": "返回"
+                },
+                "en": {
+                    "page-name": "GPS Location",
+                    "title": "GPS Location",
+                    "back": "Back"
+                }
+            };
+            
+            document.getElementById("page-name").textContent = translations[lang]["page-name"];
+            document.getElementById("title").textContent = translations[lang]["title"];
+            document.getElementById("back").textContent = translations[lang]["back"];
+        }
+
+        window.onload = function() {
+            const savedLang = localStorage.getItem("language") || "zh-TW";
+            updateLanguage(savedLang);
+        };
+    </script>
 </body>
 </html>

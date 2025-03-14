@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>生理數據</title>
+    <title id="page-name">生理數據</title>
     <style>
         * {
             margin: 0;
@@ -67,7 +67,7 @@
             margin-top: 20px; 
         }
 
-        h1 {
+        title {
             margin-top: 10px;
             text-align: center;
         }
@@ -92,21 +92,54 @@
 
     <button class="back-btn" onclick="location.href='index.html'">
         <img src="images/arrow.png" alt="返回" width="24" height="24">
-        <span>返回</span>
+        <span id="back">返回</span>
     </button>
 
-    <h1>生理數據</h1>
+    <h1 id="title">生理數據</h1>
 
     <div class="data-container">
         <div class="data-item">
             <img class="icon" src="images/heart.png" alt="心律">
-            <span>心律：<b>75</b> bpm</span>
+            <span id="heart-rate">心律：<b>75</b> bpm</span>
         </div>
         <div class="data-item">
             <img class="icon" src="images/bloodoxygen.png" alt="血氧">
-            <span>血氧：<b>98</b> %</span>
+            <span id="blood-oxygen">血氧：<b>98</b> %</span>
         </div>
     </div>
+
+
+    <script>
+        function updateLanguage(lang) {
+            const translations = {
+                "zh-TW": {
+                    "page-name": "生理數據",
+                    "title": "生理數據",
+                    "heart-rate": "心律：<b>75</b> bpm",
+                    "blood-oxygen": "血氧：<b>98</b> %",
+                    "back": "返回"
+                },
+                "en": {
+                    "page-name": "Health Data",
+                    "title": "Health Data",
+                    "heart-rate": "Heart Rate: <b>75</b> bpm",
+                    "blood-oxygen": "Blood Oxygen: <b>98</b> %",
+                    "back": "Back"
+                }
+            };
+
+            document.getElementById("page-name").textContent = translations[lang]["page-name"];
+            document.getElementById("title").textContent = translations[lang]["title"];
+            document.getElementById("heart-rate").innerHTML = translations[lang]["heart-rate"];
+            document.getElementById("blood-oxygen").innerHTML = translations[lang]["blood-oxygen"];
+            document.getElementById("back").textContent = translations[lang]["back"];
+        }
+
+        window.onload = function() {
+            const savedLang = localStorage.getItem("language") || "zh-TW";
+            updateLanguage(savedLang);
+        };
+    </script>
 
 </body>
 </html>
