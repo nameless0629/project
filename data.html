@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生理數據</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f8ff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            justify-content: flex-start;
+            padding-top: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: bold;
+        }
+
+        .back-btn img {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            width: 100%;
+            padding: 10px;
+        }
+
+        .data-container {
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            border-radius: 15px;
+            padding: 20px;
+            width: 80%;
+            max-width: 400px;
+            margin-top: 20px; /* 增加上邊距，讓標題置頂 */
+        }
+
+        h1 {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .data-item {
+            font-size: 20px;
+            display: flex;
+            align-items: center; /* 讓文字和圖示垂直對齊 */
+            justify-content: center;
+            gap: 10px; /* 文字與圖示之間的間距 */
+            margin: 15px 0;
+        }
+
+        .icon {
+            width: 28px;
+            height: 28px;
+            object-fit: contain; /* 保持圖片比例 */
+        }
+    </style>
+</head>
+<body>
+
+    <button class="back-btn" onclick="location.href='index.html'">
+        <img src="images/arrow.png" alt="返回" width="24" height="24">
+        <span>返回</span>
+    </button>
+
+    <h1>生理數據</h1>
+
+    <div class="data-container">
+        <div class="data-item">
+            <img class="icon" src="images/heart.png" alt="心律">
+            <span>心律：<b>75</b> bpm</span>
+        </div>
+        <div class="data-item">
+            <img class="icon" src="images/bloodoxygen.png" alt="血氧">
+            <span>血氧：<b>98</b> %</span>
+        </div>
+    </div>
+
+</body>
+</html>
