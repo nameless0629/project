@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>健康監測系統</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body { 
+            text-align: center; 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            padding: 20px; 
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            box-sizing: border-box;
+            background-color: #f0f8ff;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .container {
+            display: flex;
+            flex: 1;
+            gap: 20px; /* 按鈕之間的間距 */
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn {
+            flex: 1; /* 讓按鈕平均分配寬度 */
+            font-size: 20px;
+            background: lightblue;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px; /* 圓角邊框 */
+            padding: 30px 20px; /* 調整按鈕內間距 */
+            margin: 0 10px; /* 確保按鈕之間有間隙 */
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .btn i {
+            font-size: 40px; /* 調整圖示大小 */
+            margin-bottom: 10px;
+        }
+
+        .btn:hover {
+            background: deepskyblue;
+            transform: scale(1.05); /* 滑鼠懸停時放大效果 */
+        }
+    </style>
+</head>
+<body>
+    <h1>健康監測系統</h1>
+    <div class="container">
+        <button class="btn" onclick="location.href='data.html'">
+            <i class="fas fa-heartbeat"></i><br>生理數據
+        </button>
+        <button class="btn" onclick="location.href='gps.html'">
+            <i class="fas fa-map-marker-alt"></i><br>GPS 定位
+        </button>
+        <button class="btn" onclick="location.href='settings.html'">
+            <i class="fas fa-cog"></i><br>設定
+        </button>
+    </div>
+</body>
+</html>
