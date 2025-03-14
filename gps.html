@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPS定位</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f8ff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            justify-content: flex-start;
+            padding-top: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: bold;
+        }
+
+        .back-btn img {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+        }
+
+    </style>
+</head>
+<body>
+
+    <button class="back-btn" onclick="location.href='index.html'">
+        <img src="images/arrow.png" alt="返回" width="24" height="24">
+        <span>返回</span>
+    </button>
+
+    <h1>GPS定位</h1>
+
+
+</body>
+</html>
