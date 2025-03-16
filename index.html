@@ -84,6 +84,17 @@
             border-radius: 5px;
         }
 
+        .login-btn {
+            position: absolute;
+            top: 50px; 
+            right: 20px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: var(--base-font-size); 
+            font-weight: bold;
+        }
+
     </style>
 </head>
 
@@ -108,6 +119,10 @@
     
     <div id="date-time"></div>
 
+    <button class="login-btn" onclick="location.href='login.html'">
+        <span id="login-btn">登入</span>
+    </button>
+
     <script>
         function updateLanguage(lang) {
             const translations = {
@@ -116,14 +131,16 @@
                     "title": "健康監測系統",
                     "data": "生理數據",
                     "gps": "GPS 定位",
-                    "settings": "設定"
+                    "settings": "設定",
+                    "login-btn": "登入"
                 },
                 "en": {
                     "page-name": "Health Monitoring System",
                     "title": "Health Monitoring System",
                     "data": "Health Data",
                     "gps": "GPS Location",
-                    "settings": "Settings"
+                    "settings": "Settings",
+                    "login-btn": "Login"
                 }
             };
 
@@ -133,10 +150,11 @@
             document.getElementById("btn-health").textContent = translations[lang]["data"];
             document.getElementById("btn-gps").textContent = translations[lang]["gps"];
             document.getElementById("btn-settings").textContent = translations[lang]["settings"];
+            document.getElementById("login-btn").textContent = translations[lang]["login-btn"];
         }
 
         function applyFontSize() {
-            const savedFontSize = localStorage.getItem("fontSize") || "18";
+            const savedFontSize = localStorage.getItem("fontSize") || "22";
             document.documentElement.style.setProperty("--base-font-size", savedFontSize + "px");
         }
     
