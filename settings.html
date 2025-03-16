@@ -140,7 +140,7 @@
             const lang = localStorage.getItem("language") || "zh-TW";
             const translations = {
                 "zh-TW": { 20: "小", 22: "中", 24: "大", 26: "超大" },
-                "en": { 16: "Small", 18: "Medium", 20: "Large", 22: "Extra Large" }
+                "en": { 20: "Small", 22: "Medium", 24: "Large", 26: "Extra Large" }
             };
 
             document.getElementById("font-size-value").textContent = translations[lang][size] + " (" + size + "px)";
