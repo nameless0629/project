@@ -4,11 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>設定</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        :root {
+            --base-font-size: 16px;
         }
 
         body {
@@ -21,17 +27,22 @@
             height: 100vh;
             justify-content: flex-start;
             padding-top: 20px;
+            font-size: var(--base-font-size);
         }
 
-        title {
-            margin-bottom: 20px;
+        h1 {
+            font-weight: bold;
+            font-size: calc(var(--base-font-size) * 2);
+        }
+
+        button, select, label, span, option{
+            font-size: var(--base-font-size) !important;
         }
 
         .back-btn {
             position: absolute;
             top: 10px;
             left: 10px;
-            font-size: 20px;
             background: none;
             border: none;
             cursor: pointer;
@@ -54,43 +65,40 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             width: 80%;
             max-width: 400px;
+            margin-top: 20px;
         }
 
-        .settings-container {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            width: 80%;
-            max-width: 400px;
+        .label {
+            display: block;
+            margin-top: 10px;
         }
 
-        .language-select {
-            font-size: 18px;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
+        #font-size-value {
+            font-weight: bold;
+            margin-top: 5px;
         }
-
     </style>
 </head>
 <body>
 
-    <button class="back-btn" onclick="location.href='index.html'">
+    <button class="back-btn btn btn-light" onclick="location.href='index.html'">
         <img src="images/arrow.png" alt="返回" width="24" height="24">
         <span id="back">返回</span>
     </button>
 
-    <h1 id="title">設定</h1>
+    <h1 id="title" class="mt-3">設定</h1>
 
-    <div class="settings-container">
-        <label for="language" id="language-label">切換語言：</label>
-        <select id="language" class="language-select" onchange="changeLanguage(this.value)">
+    <div class="settings-container p-3">
+        <label class="label" for="language" id="language-label">語言: </label>
+        <select id="language" class="form-select" onchange="changeLanguage(this.value)">
             <option value="zh-TW">繁體中文</option>
             <option value="en">English</option>
         </select>
-    </div>
 
+        <label class="label mt-3" for="font-size-slider" id="font-size-label">字體大小: </label>
+        <input type="range" id="font-size-slider" class="form-range" min="20" max="26" step="2" value="22" oninput="updateFontSize(this.value)">
+        <span id="font-size-value">中 (22px)</span>
+    </div>
 
     <script>
         function changeLanguage(lang) {
@@ -102,26 +110,50 @@
             const translations = {
                 "zh-TW": {
                     "title": "設定",
-                    "language-label": "切換語言：",
-                    "back": "返回"
+                    "language-label": "語言: ",
+                    "font-size-label": "字體大小: ",
+                    "back": "返回",
+                    "sizes": { 20: "小", 22: "中", 24: "大", 26: "超大" }
                 },
                 "en": {
                     "title": "Settings",
-                    "language-label": "Change Language:",
-                    "back": "Back"
+                    "language-label": "Language: ",
+                    "font-size-label": "Font Size: ",
+                    "back": "Back",
+                    "sizes": { 20: "Small", 22: "Medium", 24: "Large", 26: "Extra Large" }
                 }
             };
 
             document.getElementById("title").textContent = translations[lang]["title"];
             document.getElementById("language-label").textContent = translations[lang]["language-label"];
+            document.getElementById("font-size-label").textContent = translations[lang]["font-size-label"];
             document.getElementById("back").textContent = translations[lang]["back"];
+
+            const fontSize = document.getElementById("font-size-slider").value;
+            document.getElementById("font-size-value").textContent = translations[lang]["sizes"][fontSize] + " (" + fontSize + "px)";
         }
 
-        // 頁面加載時讀取語言設定
+        function updateFontSize(size) {
+            document.documentElement.style.setProperty("--base-font-size", size + "px");
+            localStorage.setItem("fontSize", size);
+
+            const lang = localStorage.getItem("language") || "zh-TW";
+            const translations = {
+                "zh-TW": { 20: "小", 22: "中", 24: "大", 26: "超大" },
+                "en": { 16: "Small", 18: "Medium", 20: "Large", 22: "Extra Large" }
+            };
+
+            document.getElementById("font-size-value").textContent = translations[lang][size] + " (" + size + "px)";
+        }
+
         window.onload = function() {
             const savedLang = localStorage.getItem("language") || "zh-TW";
             document.getElementById("language").value = savedLang;
             updateLanguage(savedLang);
+
+            const savedFontSize = localStorage.getItem("fontSize") || "18";
+            document.getElementById("font-size-slider").value = savedFontSize;
+            updateFontSize(savedFontSize);
         };
     </script>
 

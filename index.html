@@ -11,6 +11,10 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --base-font-size: 18px;
+        }
+
         body { 
             text-align: center; 
             font-family: Arial, sans-serif; 
@@ -18,10 +22,17 @@
             flex-direction: column;
             height: 100vh;
             background-color: #f0f8ff;
+            padding-top: 20px;
+            font-size: var(--base-font-size);
         }
 
         title {
-            margin: 20px 0;
+            margin-bottom: 20px;
+            font-size: calc(var(--base-font-size) * 2);
+        }
+
+        button, span {
+            font-size: var(--base-font-size) !important;
         }
 
         .container {
@@ -30,7 +41,7 @@
             gap: 15px; 
             justify-content: space-between;
             padding: 10px;
-            
+            margin-top: 20px;
             overflow: hidden;
         }
 
@@ -57,7 +68,7 @@
         }
 
         .btn:hover {
-            transform: scale(1.05);
+            transform: scale(1.03);
             background: deepskyblue;
         }
     </style>
@@ -102,6 +113,7 @@
                     "settings": "Settings"
                 }
             };
+
     
             document.getElementById("page-name").textContent = translations[lang]["page-name"];
             document.getElementById("title").textContent = translations[lang]["title"];
@@ -109,8 +121,15 @@
             document.getElementById("btn-gps").textContent = translations[lang]["gps"];
             document.getElementById("btn-settings").textContent = translations[lang]["settings"];
         }
+
+        function applyFontSize() {
+            const savedFontSize = localStorage.getItem("fontSize") || "18";
+            document.documentElement.style.setProperty("--base-font-size", savedFontSize + "px");
+        }
     
         window.onload = function() {
+            applyFontSize();
+
             const savedLang = localStorage.getItem("language") || "zh-TW";
             updateLanguage(savedLang);
         };
