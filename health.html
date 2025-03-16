@@ -85,6 +85,17 @@
             height: 28px;
             object-fit: contain; 
         }
+
+        #date-time {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: var(--base-font-size);
+            font-weight: bold;
+            background: #f0f8ff;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
@@ -107,6 +118,7 @@
         </div>
     </div>
 
+    <div id="date-time"></div>
 
     <script>
         function updateLanguage(lang) {
@@ -145,6 +157,33 @@
             const savedLang = localStorage.getItem("language") || "zh-TW";
             updateLanguage(savedLang);
         };
+
+        function updateDateTime() {
+            const now = new Date();
+
+            // 根據語言選擇星期名稱
+            const lang = localStorage.getItem("language") || "zh-TW";
+            const days = {
+                "zh-TW": ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
+                "en": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+            };
+
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, "0");
+            const day = String(now.getDate()).padStart(2, "0");
+            const weekDay = days[lang][now.getDay()];
+
+            const hours = String(now.getHours()).padStart(2, "0");
+            const minutes = String(now.getMinutes()).padStart(2, "0");
+            const seconds = String(now.getSeconds()).padStart(2, "0");
+
+            const dateTimeStr = `${year}-${month}-${day} ${weekDay} ${hours}:${minutes}:${seconds}`;
+            document.getElementById("date-time").textContent = dateTimeStr;
+        }
+
+        setInterval(updateDateTime, 1000);
+
+        updateDateTime();
     </script>
 
 </body>
