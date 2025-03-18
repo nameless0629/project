@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="page-name">生理數據</title>
+    <title id="page-name">心律</title>
 
     <style>
         * {
@@ -59,25 +59,16 @@
         }
  
         
-        .data-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            row-gap: 100px;
-            width: 90%;
-            max-width: 2000px;
-            margin-top: 200px;
-        }
-
         .data-container {
             background: white;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             text-align: center;
             border-radius: 15px;
             padding: 20px;
-            min-height: 120px;
+            width: 80%;
+            max-width: 400px;
+            margin-top: 20px; 
         }
-
 
 
         .data-item {
@@ -106,67 +97,33 @@
             border-radius: 5px;
         }
 
-        @media (max-width: 768px) {
-            .data-grid {
-                grid-template-columns: repeat(1, 1fr);
-                margin-top: 50px;
-            }
-
+        @media screen and (max-width: 768px) {
             #date-time {
                 display: none;
-            }
+            } 
         }
     </style>
 </head>
 <body>
 
-    <button class="back-btn" onclick="location.href='index.html'">
+    <button class="back-btn" onclick="location.href='health.html'">
         <img src="images/arrow.png" alt="返回" width="24" height="24">
         <span id="back">返回</span>
     </button>
 
-    <h1 id="title">生理數據</h1>
+    <h1 id="title">心律</h1>
 
-    <div class="data-grid">
-        <div class="data-container" onclick="location.href='heartrate.html'">
-            <div class="data-item">
-                <img class="icon" src="images/heart.png" alt="心律">
-                <span id="heart-rate">心律：<b>75</b> bpm</span>
-            </div>
+    <div class="data-container">
+        <div class="data-item">
+            <span id="now-heart-rate">當前心律：<b>75</b> bpm</span>
         </div>
-    
-        <div class="data-container" onclick="location.href='blood_oxygen.html'">
-            <div class="data-item">
-                <img class="icon" src="images/bloodoxygen.png" alt="血氧">
-                <span id="blood-oxygen">血氧：<b>98</b> %</span>
-            </div>
+        <div class="data-item">
+            <span id="hr-heart-rate">一小時內平均心律：<b>75</b> bpm</span>
         </div>
-    
-        <div class="data-container">
-            <div class="data-item">
-                <span>數據 3</span>
-            </div>
-        </div>
-    
-        <div class="data-container">
-            <div class="data-item">
-                <span>數據 4</span>
-            </div>
-        </div>
-    
-        <div class="data-container">
-            <div class="data-item">
-                <span>數據 5</span>
-            </div>
-        </div>
-    
-        <div class="data-container">
-            <div class="data-item">
-                <span>數據 6</span>
-            </div>
+        <div class="data-item">
+            <span id="day-heart-rate">今日平均心律：<b>75</b> bpm</span>
         </div>
     </div>
-    
 
     <div id="date-time"></div>
 
@@ -174,25 +131,28 @@
         function updateLanguage(lang) {
             const translations = {
                 "zh-TW": {
-                    "page-name": "生理數據",
-                    "title": "生理數據",
-                    "heart-rate": "心律：<b>75</b> bpm",
-                    "blood-oxygen": "血氧：<b>98</b> %",
+                    "page-name": "心律",
+                    "title": "心律",
+                    "now-heart-rate": "心律：<b>75</b> bpm",
+                    "hr-heart-rate": "一小時內平均心律：<b>75</b> bpm",
+                    "day-heart-rate": "今日平均心律：<b>75</b> bpm",
                     "back": "返回"
                 },
                 "en": {
-                    "page-name": "Health Data",
-                    "title": "Health Data",
-                    "heart-rate": "Heart Rate: <b>75</b> bpm",
-                    "blood-oxygen": "Blood Oxygen: <b>98</b> %",
+                    "page-name": "Heart Rate",
+                    "title": "Heart Rate",
+                    "now-heart-rate": "Heart Rate: <b>75</b> bpm",
+                    "hr-heart-rate": "Average Heart Rate in the Past Hour: <b>75</b> bpm",
+                    "day-heart-rate": "Average Heart Rate Today: <b>75</b> bpm",
                     "back": "Back"
                 }
             };
 
             document.getElementById("page-name").textContent = translations[lang]["page-name"];
             document.getElementById("title").textContent = translations[lang]["title"];
-            document.getElementById("heart-rate").innerHTML = translations[lang]["heart-rate"];
-            document.getElementById("blood-oxygen").innerHTML = translations[lang]["blood-oxygen"];
+            document.getElementById("now-heart-rate").innerHTML = translations[lang]["now-heart-rate"];
+            document.getElementById("hr-heart-rate").innerHTML = translations[lang]["hr-heart-rate"];
+            document.getElementById("day-heart-rate").innerHTML = translations[lang]["day-heart-rate"];
             document.getElementById("back").textContent = translations[lang]["back"];
         }
 
